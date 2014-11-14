@@ -1,9 +1,9 @@
 # Cipher TWO:
 #
-# m -> + -> u -> SBox -> v -> + -> w ->SBox -> x -> + -> c
-#      ^                      ^                     ^
-#      |                      |                     |
-#      k0                     k1                    k2
+# m -> + -> u -> SBox -> v -> + -> w -> SBox -> x -> + -> c
+#      ^                      ^                      ^
+#      |                      |                      |
+#      k0                     k1                     k2
 #
 # Block size: 4 bits
 # Key size: 3 * 4 bits
@@ -67,7 +67,7 @@ counter = Hash[]
 end
 
 # For each k2 candidate repeat the one-round differential cryptanalysis of Ex1.1.
-counter.to_a.sort {|a,b| a[1] <=> b[1]}.map {|a| a[0] }.each do |k2|
+counter.to_a.sort {|a,b| a[1] <=> b[1]}.map {|a| a[0] }.reverse.each do |k2|
 	(0x0..0xf).each do |maybe_k1|
 		sane = pairs.reject do |p|
 			mx,cx = p[0]
