@@ -1,3 +1,13 @@
+# Cipher ONE:
+#
+# m -> + -> u -> SBox -> v -> + -> c
+#      ^                      ^
+#      |                      |
+#      k0                     k1
+#
+# Block size: 4 bits
+# Key size: 2 * 4 bits
+
 SBox = {
 	0x0 => 0x6,
 	0x1 => 0x4,
@@ -22,6 +32,8 @@ SBox_inv = Hash[SBox.keys.map {|x| [SBox[x],x]}]
 def encrypt(k0,k1,m)
 	return SBox[m ^ k0] ^ k1
 end
+
+# Ex1.1: Differential cryptanalysis on Cipher ONE with three message/ciphertext pairs:
 
 m0,c0 = 0x6,0x8
 m1,c1 = 0x0,0xc
